@@ -16,7 +16,7 @@ import TickIcon  from '../../assets/TickIcon.svg'
 import DismissIcon from '../../assets/Dismiss.svg'
 import welcomeIcon from '../../assets/welcomeIcon.png'
 import styles from './Layout.module.css';
-import SpinnerComponent from '../../components/Spinner/Spinner';
+import SpinnerComponent from '../../components/Spinner/SpinnerComponent';
 import { ChatHistoryPanel } from '../../components/ChatHistory/ChatHistoryPanel'
 
 
@@ -229,6 +229,7 @@ const Layout = () => {
             </div>
 
           </div>
+          <ChatHistoryPanel isLoading={false} />
           {appStateContext?.state.isChatHistoryOpen &&
             <div className={styles.historyPanel}>
               {appStateContext?.state.isChatHistoryOpen &&

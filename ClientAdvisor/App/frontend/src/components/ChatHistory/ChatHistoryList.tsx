@@ -8,10 +8,10 @@ import { ChatHistoryListItemGroups } from './ChatHistoryListItem'
 
 interface ChatHistoryListProps { }
 
-export interface GroupedChatHistory {
-  title: string
-  entries: Conversation[]
-}
+// export interface GroupedChatHistory {
+//   title: string
+//   entries: Conversation[]
+// }
 
 // Helper function to format dates
 const formatDate = (date: Date, includeWeekday = false) => {
@@ -98,10 +98,10 @@ const segregateItems = (items: Conversation[]) => {
 };
 
 
-const ChatHistoryList: React.FC<ChatHistoryListProps> = () => {
+export const ChatHistoryList: React.FC<ChatHistoryListProps> = () => {
   const appStateContext = useContext(AppStateContext)
   const chatHistory = appStateContext?.state.chatHistory
-  React.useEffect(() => { }, [appStateContext?.state.chatHistory])
+  //React.useEffect(() => { }, [appStateContext?.state.chatHistory])
   let groupedChatHistory
   if (chatHistory && chatHistory.length > 0) {
     groupedChatHistory = segregateItems(chatHistory)
@@ -120,4 +120,4 @@ const ChatHistoryList: React.FC<ChatHistoryListProps> = () => {
   return <ChatHistoryListItemGroups groupedChatHistory={groupedChatHistory} />
 }
 
-export default ChatHistoryList
+
