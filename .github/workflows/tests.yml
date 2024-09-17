@@ -2,9 +2,9 @@ name: Tests
 
 on:
   push:
-    branches: PSL-Workflow-8099
+    branches: PSL-Workflow-8079
   pull_request:
-    branches: PSL-Workflow-8099
+    branches: PSL-Workflow-8079
     types:
       - opened
       - ready_for_review
