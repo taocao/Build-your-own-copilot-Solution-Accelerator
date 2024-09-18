@@ -2,22 +2,25 @@ name: Tests
 
 on:
   push:
-    branches: PSL-Workflow-8079
+    branches: [PSL-Workflow-8079]
+    paths:
+      - 'ClientAdvisor/**'
+      - 'ResearchAssistant/**'
   pull_request:
-    branches: PSL-Workflow-8079
+    branches: [PSL-Workflow-8079]
     types:
       - opened
       - ready_for_review
       - reopened
       - synchronize
-  workflow_call:
-  merge_group:
+    paths:
+      - 'ClientAdvisor/**'
+      - 'ResearchAssistant/**'
 
 jobs:
   test_client_advisor:
     name: Client Advisor Tests
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
@@ -49,17 +52,12 @@ jobs:
             ClientAdvisor/App/frontend/coverage/
             ClientAdvisor/App/frontend/coverage/lcov-report/
 
-    # Trigger only on changes within the ClientAdvisor folder
-    # This will only run the job if files in ClientAdvisor/ have been changed
-    strategy:
-      matrix:
-        include:
-          - folder: 'ClientAdvisor/**'
-    
+    # Only run the job if there are changes in the ClientAdvisor folder
+    if: ${{ contains(github.event.commits[*].modified, 'ClientAdvisor/') }}
+
   test_research_assistant:
     name: Research Assistant Tests
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
@@ -91,9 +89,5 @@ jobs:
             ResearchAssistant/App/frontend/coverage/
             ResearchAssistant/App/frontend/coverage/lcov-report/
 
-    # Trigger only on changes within the ResearchAssistant folder
-    # This will only run the job if files in ResearchAssistant/ have been changed
-    strategy:
-      matrix:
-        include:
-          - folder: 'ResearchAssistant/**'
+    # Only run the job if there are changes in the ResearchAssistant folder
+    if: ${{ contains(github.event.commits[*].modified, 'ResearchAssistant/') }}
