@@ -2,12 +2,12 @@ name: Tests
 
 on:
   push:
-    branches: [PSL-Workflow-8079]
+    branches: PSL-Workflow-8079
     paths:
       - 'ClientAdvisor/**'
       - 'ResearchAssistant/**'
   pull_request:
-    branches: [PSL-Workflow-8079]
+    branches: PSL-Workflow-8079
     types:
       - opened
       - ready_for_review
