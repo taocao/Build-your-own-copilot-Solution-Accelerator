@@ -2,12 +2,13 @@ name: Tests
 
 on:
   push:
-    branches: PSL-Workflow-8079
+    branches: [PSL-Workflow-8079]
+    # Trigger on changes in these specific paths
     paths:
       - 'ClientAdvisor/**'
       - 'ResearchAssistant/**'
   pull_request:
-    branches: PSL-Workflow-8079
+    branches: [PSL-Workflow-8079]
     types:
       - opened
       - ready_for_review
@@ -21,6 +22,8 @@ jobs:
   test_client_advisor:
     name: Client Advisor Tests
     runs-on: ubuntu-latest
+    # The if condition ensures that this job only runs if changes are in the ClientAdvisor folder
+    if: contains(github.event.head_commit.message, 'ClientAdvisor/')
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
@@ -52,12 +55,11 @@ jobs:
             ClientAdvisor/App/frontend/coverage/
             ClientAdvisor/App/frontend/coverage/lcov-report/
 
-    # Only run the job if there are changes in the ClientAdvisor folder
-    if: ${{ contains(github.event.commits[*].modified, 'ClientAdvisor/') }}
-
   test_research_assistant:
     name: Research Assistant Tests
     runs-on: ubuntu-latest
+    # The if condition ensures that this job only runs if changes are in the ResearchAssistant folder
+    if: contains(github.event.head_commit.message, 'ResearchAssistant/')
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
@@ -88,6 +90,3 @@ jobs:
           path: |
             ResearchAssistant/App/frontend/coverage/
             ResearchAssistant/App/frontend/coverage/lcov-report/
-
-    # Only run the job if there are changes in the ResearchAssistant folder
-    if: ${{ contains(github.event.commits[*].modified, 'ResearchAssistant/') }}
