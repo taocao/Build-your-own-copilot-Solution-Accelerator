@@ -68,7 +68,7 @@ https://azure.microsoft.com/en-us/explore/global-infrastructure/products-by-regi
 
 2. Click the following deployment button to create the required resources for this accelerator in your Azure Subscription.
 
-   [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmicrosoft%2FBuild-your-own-copilot-Solution-Accelerator%2Fmain%2FResearchAssistant%2FDeployment%2Fbicep%2Fmain.json)
+   [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com/taocao/Build-your-own-copilot-Solution-Accelerator/local_dev/ResearchAssistant/Deployment/bicep/main.json)
 
 3. You will need to select an Azure Subscription, create/select a Resource group, Region, and a unique Solution Prefix.
 
